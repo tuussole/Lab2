@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Table>
+    <ScientificWork>
+        <Author>
+            <FirstName>Bill</FirstName>
+            <MiddleName>Ivanovich</MiddleName>
+            <LastName>Gates</LastName>
+        </Author>
+        <Name>AI Research</Name>
+        <Cathedra></Cathedra>
+    </ScientificWork>    
+    <ScientificWork>
+        <Author>
+            <FirstName>David</FirstName>
+            <MiddleName>Ivanovich</MiddleName>
+            <LastName>Brulov</LastName>
+        </Author>
+        <Name>Load Balancer</Name>
+        <Cathedra></Cathedra>
+    </ScientificWork>
+</Table>

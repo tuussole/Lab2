@@ -30,11 +30,11 @@ namespace Lab2
                 : sw => nameSelector(sw.Author) == selected;
         }
 
-        public static void LoadAuthorCombobox(ComboBox comboBox, IReader reader, Func<Author, string> nameSelector)
+        public static void LoadAuthorCombobox(ComboBox comboBox, Repository repository, Func<Author, string> nameSelector)
         {
             var list = new List<string> { Consts.All };
 
-            var authorNames = reader.GetAuthorName(nameSelector);
+            var authorNames = repository.GetAuthorName(nameSelector);
             list.AddRange(authorNames);
 
             comboBox.DataSource = list;

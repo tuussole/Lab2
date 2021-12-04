@@ -8,34 +8,65 @@ using System.Xml;
 
 namespace Lab2
 {
-    class DOMReader : IReader
+    class DomReader : IReader
     {
         private XmlDocument _document;
 
-        public DOMReader(string path)
+
+        public void Load(string path)
         {
             _document = new XmlDocument();
             _document.Load(path);
         }
 
-        public IEnumerable<string> GetAuthorName(Func<Author, string> nameSelector)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Author> GetAuthors()
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<ScientificWork> GetScientificWorks()
         {
-            throw new NotImplementedException();
+            return GetChildren(GetTable(), Consts.Parser.ScientificWork)
+                    .Select(el => GetScientificWork(el));
+                    
         }
 
-        public IEnumerable<ScientificWork> GetScientificWorks(Func<ScientificWork, bool> predicate)
+        private ScientificWork GetScientificWork(XmlElement element)
         {
-            throw new NotImplementedException();
+            return new ScientificWork
+            {
+                Name = GetFirstChildValue(element, Consts.Parser.Name),
+                Author = GetAuthor(GetFirstChild(element, Consts.Parser.Author))
+            };
+        }
+
+        private Author GetAuthor(XmlElement element)
+        {
+            return new Author
+            {
+                FirstName = GetFirstChildValue(element, Consts.Parser.FirstName),
+                MiddleName = GetFirstChildValue(element, Consts.Parser.MiddleName),
+                LastName = GetFirstChildValue(element, Consts.Parser.LastName),
+            };
+        }
+
+        private XmlElement GetTable()
+        {
+            return _document.DocumentElement;
+        }
+
+        private IEnumerable<XmlElement> GetChildren(XmlNode node, string name)
+        {
+            return node.ChildNodes
+                        .Cast<XmlElement>()
+                        .Where(e => e.Name == name);
+        }
+
+        private XmlElement GetFirstChild(XmlElement element, string name)
+        {
+            return GetChildren(element, name)
+                    .FirstOrDefault();
+
+        }
+        private string GetFirstChildValue(XmlElement element, string name)
+        {
+            return GetFirstChild(element, name)
+                    .InnerText;
         }
     }
 }

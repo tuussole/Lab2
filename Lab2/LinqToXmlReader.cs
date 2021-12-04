@@ -12,12 +12,7 @@ namespace Lab2
     {
         private XDocument document;
 
-        public LinqToXmlReader(string path)
-        {
-            Load(path);
-        }
-
-        private void Load(string path = Consts.DataBaseLocation)
+        public void Load(string path)
         {
             document = XDocument.Load(path);
         }
@@ -29,12 +24,12 @@ namespace Lab2
                            .Select(e => GetScientificWork(e));
         }
 
-        public IEnumerable<ScientificWork> GetScientificWorks(Func<ScientificWork, bool> predicate)
-        {
-            return GetScientificWorks()
-                    .Where(predicate)
-                    .ToList();
-        }
+        //public IEnumerable<ScientificWork> GetScientificWorks(Func<ScientificWork, bool> predicate)
+        //{
+        //    return GetScientificWorks()
+        //            .Where(predicate)
+        //            .ToList();
+        //}
 
         public IEnumerable<Author> GetAuthors()
         {

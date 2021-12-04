@@ -24,13 +24,6 @@ namespace Lab2
                            .Select(e => GetScientificWork(e));
         }
 
-        //public IEnumerable<ScientificWork> GetScientificWorks(Func<ScientificWork, bool> predicate)
-        //{
-        //    return GetScientificWorks()
-        //            .Where(predicate)
-        //            .ToList();
-        //}
-
         public IEnumerable<Author> GetAuthors()
         {
             return GetScientificWorks()

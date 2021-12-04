@@ -11,10 +11,5 @@ namespace Lab2
     {
         void Load(string path);
         public IEnumerable<ScientificWork> GetScientificWorks();
-        //public IEnumerable<ScientificWork> GetScientificWorks(Func<ScientificWork, bool> predicate);
-
-        //public IEnumerable<Author> GetAuthors();
-
-        //public IEnumerable<string> GetAuthorName(Func<Author, string> nameSelector);
     }
 }

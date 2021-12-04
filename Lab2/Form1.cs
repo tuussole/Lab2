@@ -23,7 +23,6 @@ namespace Lab2
 
         private IEnumerable<ScientificWork> _works = new List<ScientificWork>();
 
-       // private IReader _reader;
         private Repository _repository;
 
         private RadioButton _selectedRadioButton;

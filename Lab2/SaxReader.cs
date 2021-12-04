@@ -38,9 +38,6 @@ namespace Lab2
 
             while (xmlReader.Read())
             {
-                //var nodeType = xmlReader.NodeType;
-                //var name = xmlReader.Name;
-                //var value = xmlReader.Value;
 
                 if(xmlReader.NodeType == XmlNodeType.Element)
                 {

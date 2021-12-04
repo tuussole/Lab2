@@ -1,0 +1,19 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <th>Scientific Work</th>
+                <th>Author</th>
+            </tr>
+            @foreach (var m in Model)
+            {
+                <tr>
+                    <td>@m.Name</td>
+                    <td>@(m.Author.FirstName + " " + m.Author.MiddleName + " " + m.Author.LastName)</td>
+                </tr>
+            }
+        </table>
+    </body>
+</html>

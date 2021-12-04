@@ -44,6 +44,9 @@ namespace Lab2
             this.linqReaderRadioButton = new System.Windows.Forms.RadioButton();
             this.clearFilters = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.scientificWorkNamesLabel = new System.Windows.Forms.Label();
+            this.scientificWorkNamesComboBox = new System.Windows.Forms.ComboBox();
+            this.htmlGeneratorButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -60,9 +63,10 @@ namespace Lab2
             // 
             // richTextBox1
             // 
+            this.richTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.richTextBox1.Location = new System.Drawing.Point(12, 12);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(263, 352);
+            this.richTextBox1.Size = new System.Drawing.Size(268, 352);
             this.richTextBox1.TabIndex = 3;
             this.richTextBox1.Text = "";
             // 
@@ -201,11 +205,41 @@ namespace Lab2
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Author";
             // 
+            // scientificWorkNamesLabel
+            // 
+            this.scientificWorkNamesLabel.AutoSize = true;
+            this.scientificWorkNamesLabel.Location = new System.Drawing.Point(586, 50);
+            this.scientificWorkNamesLabel.Name = "scientificWorkNamesLabel";
+            this.scientificWorkNamesLabel.Size = new System.Drawing.Size(126, 15);
+            this.scientificWorkNamesLabel.TabIndex = 10;
+            this.scientificWorkNamesLabel.Text = "Scientific Work Names";
+            // 
+            // scientificWorkNamesComboBox
+            // 
+            this.scientificWorkNamesComboBox.FormattingEnabled = true;
+            this.scientificWorkNamesComboBox.Location = new System.Drawing.Point(718, 47);
+            this.scientificWorkNamesComboBox.Name = "scientificWorkNamesComboBox";
+            this.scientificWorkNamesComboBox.Size = new System.Drawing.Size(121, 23);
+            this.scientificWorkNamesComboBox.TabIndex = 11;
+            // 
+            // htmlGeneratorButton
+            // 
+            this.htmlGeneratorButton.Location = new System.Drawing.Point(652, 361);
+            this.htmlGeneratorButton.Name = "htmlGeneratorButton";
+            this.htmlGeneratorButton.Size = new System.Drawing.Size(102, 23);
+            this.htmlGeneratorButton.TabIndex = 12;
+            this.htmlGeneratorButton.Text = "Save To HTML";
+            this.htmlGeneratorButton.UseVisualStyleBackColor = true;
+            this.htmlGeneratorButton.Click += new System.EventHandler(this.htmlGeneratorButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(881, 450);
+            this.Controls.Add(this.htmlGeneratorButton);
+            this.Controls.Add(this.scientificWorkNamesComboBox);
+            this.Controls.Add(this.scientificWorkNamesLabel);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.richTextBox1);
@@ -218,6 +252,7 @@ namespace Lab2
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -237,6 +272,9 @@ namespace Lab2
         private System.Windows.Forms.Button fillButton;
         private System.Windows.Forms.Button clearFilters;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label scientificWorkNamesLabel;
+        private System.Windows.Forms.ComboBox scientificWorkNamesComboBox;
+        private System.Windows.Forms.Button htmlGeneratorButton;
     }
 }
 

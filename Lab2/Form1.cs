@@ -1,10 +1,12 @@
-﻿using Lab2.Models;
+﻿using Lab2.Helpers;
+using Lab2.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +21,8 @@ namespace Lab2
         private readonly Dictionary<RadioButton, IReader> _readers;
         private readonly List<ComboBox> _filters;
 
+        private IEnumerable<ScientificWork> _works = new List<ScientificWork>();
+
        // private IReader _reader;
         private Repository _repository;
 
@@ -26,8 +30,6 @@ namespace Lab2
         public Form1()
         {
             InitializeComponent();
-
-            //_reader = new LinqToXmlReader(Consts.DataBaseLocation);
 
             _authorSelectors = new Dictionary<ComboBox, Func<Author, string>>
             {
@@ -47,24 +49,11 @@ namespace Lab2
             {
                 this.firstNameComboBox,
                 this.middleNameComboBox,
-                this.lastNameComboBox
+                this.lastNameComboBox,
+                this.scientificWorkNamesComboBox
             };
-            //Load();
         }
 
-        private void Load()
-        {
-            var domReader = new DomReader();
-            domReader.Load(Consts.DataBaseLocation);
-            domReader.GetScientificWorks();
-
-            var xmlDocument = new XmlDocument();
-            xmlDocument.Load(Consts.DataBaseLocation);
-
-            //xmlDocument.
-
-            Debug.WriteLine(xmlDocument.InnerText);
-        }
 
         #region Events
 
@@ -76,10 +65,12 @@ namespace Lab2
                 return;
             }
 
-            var works = Filter(_repository);
+            _works = Filter(_repository);
 
-            var writer = new Writer();
-            var text = writer.Write(works);
+            var length = (int)(this.richTextBox1.Width / (this.richTextBox1.Font.Size * 5.5 / 9));
+
+            var writer = new Writer(length);
+            var text = writer.Write(_works);
 
             this.richTextBox1.Text = text;
         }
@@ -106,7 +97,8 @@ namespace Lab2
             reader.Load(Consts.DataBaseLocation);
 
             _repository = new Repository(reader);
-            LoadAuthors(_repository);
+
+            LoadComboBoxes(_repository);
         }
 
         private void clearFilters_Click(object sender, EventArgs e)
@@ -116,6 +108,14 @@ namespace Lab2
                 filter.SelectedItem = Consts.All;
             }
         }
+        private void htmlGeneratorButton_Click(object sender, EventArgs e)
+        {
+            var generator = new HtmlGenerator();
+            var html = generator.Generate(_works);
+
+            File.WriteAllText(Consts.HtmlOutputLocation, html);
+
+        }
 
         #endregion
 
@@ -123,6 +123,14 @@ namespace Lab2
 
 
         #region Helpers
+
+        private void LoadComboBoxes(Repository repository)
+        {
+            LoadAuthors(_repository);
+
+            WorkHelper.LoadNameComboBox(this.scientificWorkNamesComboBox, repository);
+
+        }
         private void LoadAuthors(Repository repository)
         {
             foreach (var map in _authorSelectors)
@@ -141,9 +149,15 @@ namespace Lab2
                 works = works.Where(filter);
             }
 
+            var workNameFilter = ComboBoxHelper.GetFilter(this.scientificWorkNamesComboBox, (sw) => sw.Name);
+
+            works = works.Where(workNameFilter);
+
             return works.ToList();
         }
 
         #endregion
+
+
     }
 }

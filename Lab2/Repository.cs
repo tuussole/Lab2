@@ -23,7 +23,7 @@ namespace Lab2
 
         public IEnumerable<Author> GetAuthors()
         {
-            return _reader.GetScientificWorks()
+            return GetScientificWorks()
                     .Select(sw => sw.Author)
                     .ToList();
         }
@@ -33,6 +33,13 @@ namespace Lab2
             return GetAuthors()
                     .Select(nameSelector)
                     .ToHashSet();
+        }
+
+        public IEnumerable<string> GetWorkNames()
+        {
+            return GetScientificWorks()
+                    .Select(sw => sw.Name)
+                    .ToList();
         }
     }
 }

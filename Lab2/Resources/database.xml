@@ -17,5 +17,23 @@
         </Author>
         <Name>Load Balancer</Name>
         <Cathedra></Cathedra>
+    </ScientificWork>    
+    <ScientificWork>
+        <Author>
+            <FirstName>David</FirstName>
+            <MiddleName>Ivanovich</MiddleName>
+            <LastName>Brulov</LastName>
+        </Author>
+        <Name>Unit Test framework</Name>
+        <Cathedra></Cathedra>
     </ScientificWork>
+    <ScientificWork>
+        <Author>
+            <FirstName>Anton</FirstName>
+            <MiddleName>Petrovich</MiddleName>
+            <LastName>Arankar</LastName>
+        </Author>
+        <Name>AI Research</Name>
+        <Cathedra></Cathedra>
+    </ScientificWork>    
 </Table>

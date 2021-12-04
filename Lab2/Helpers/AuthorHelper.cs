@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Lab2
+namespace Lab2.Helpers
 {
     static class AuthorHelper
     {
@@ -23,22 +23,14 @@ namespace Lab2
 
         public static Func<ScientificWork, bool> GetAuthorFilter(ComboBox comboBox, Func<Author, string> nameSelector)
         {
-            var selected = comboBox.SelectedItem.ToString();
-
-            return selected == Consts.All
-                ? (sw) => true
-                : sw => nameSelector(sw.Author) == selected;
+            return ComboBoxHelper.GetFilter(comboBox, (sw) => nameSelector(sw.Author));
         }
 
         public static void LoadAuthorCombobox(ComboBox comboBox, Repository repository, Func<Author, string> nameSelector)
         {
-            var list = new List<string> { Consts.All };
-
             var authorNames = repository.GetAuthorName(nameSelector);
-            list.AddRange(authorNames);
 
-            comboBox.DataSource = list;
-            comboBox.SelectedItem = Consts.All;
+            ComboBoxHelper.LoadCombobox(comboBox, authorNames);
         }
     }
 }

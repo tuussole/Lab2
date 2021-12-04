@@ -11,9 +11,17 @@ namespace Lab2
     {
         private const string Template = "{0}: {1}";
         private const string Level = "\t";
+        private const char Separator = '-';
         private const int InitLevel = 0;
 
         private readonly StringBuilder _builder = new StringBuilder();
+        private readonly int _length;
+
+        public Writer(int length)
+        {
+            _length = length;
+        }
+
         public string Write(IEnumerable<ScientificWork> scientificWorks)
         {
             foreach(var work in scientificWorks)
@@ -31,6 +39,8 @@ namespace Lab2
             var nextLevel = InitLevel + 1;
             WriteAuthor(work.Author, nextLevel);
             WriteValue(Consts.Writer.Name, work.Name, nextLevel);
+
+            WriteSeparator();
         }
 
         private void WriteAuthor(Author author, int level)
@@ -58,7 +68,10 @@ namespace Lab2
             }
         }
 
-        
+        private void WriteSeparator()
+        {
+            _builder.AppendLine(new string(Enumerable.Repeat(Separator, _length).ToArray()));
+        }
 
     }
 }

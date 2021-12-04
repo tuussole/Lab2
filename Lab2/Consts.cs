@@ -9,6 +9,8 @@ namespace Lab2
     public static class Consts
     {
         public const string DataBaseLocation = "Resources//database.xml";
+        public const string HtmlTemplateLocation = "Resources//Template.cshtml";
+        public const string HtmlOutputLocation = "report.html";
 
         public const string All = "*";
 
